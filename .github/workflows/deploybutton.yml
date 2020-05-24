@@ -12,7 +12,7 @@ jobs:
       uses: wilfriedwoivre/action-deploy-azure-button@master
 
     - name: push-update
-      if: steps.hello.outputs.fileUpdated == true
+      if: steps.generate-deploy-button.outputs.fileUpdated == 'true'
       run: |
           git config --global user.name 'Gitub Action Bot'
           git config --global user.email 'wilfried.woivre@users.noreply.github.com'

@@ -1,0 +1,14 @@
+name: Deploy Azure Button
+
+on: [push, pull_request]
+
+jobs:
+  add-azure-deploy-button:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate Deploy button
+      uses:  wilfriedwoivre/action-deploy-azure-button@master
+
+

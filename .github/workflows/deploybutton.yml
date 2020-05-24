@@ -9,6 +9,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: generate-deploy-button
+      id: generate-deploy-button
       uses: wilfriedwoivre/action-deploy-azure-button@master
 
     - name: debug

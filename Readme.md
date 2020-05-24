@@ -1,3 +1,0 @@
-# Some title
-
-Hello test !

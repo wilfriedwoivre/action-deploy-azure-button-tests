@@ -11,8 +11,11 @@ jobs:
     - name: generate-deploy-button
       uses: wilfriedwoivre/action-deploy-azure-button@master
 
+    - name: debug
+      run: echo "${{ steps.generate-deploy-button.outputs.fileUpdated }}"
+      
     - name: push-update
-      if: steps.generate-deploy-button.outputs.fileUpdated == 'true'
+      if: steps.generate-deploy-button.outputs.fileUpdated == true
       run: |
           git config --global user.name 'Gitub Action Bot'
           git config --global user.email 'wilfried.woivre@users.noreply.github.com'

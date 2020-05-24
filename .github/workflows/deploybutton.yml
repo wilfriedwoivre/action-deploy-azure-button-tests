@@ -10,7 +10,4 @@ jobs:
 
     - name: Generate Deploy button
       uses: wilfriedwoivre/action-deploy-azure-button@master
-      env:
-        markdownPath: Readme.md
-
 

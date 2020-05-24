@@ -13,7 +13,7 @@ jobs:
       uses: wilfriedwoivre/action-deploy-azure-button@master
 
     - name: debug
-      run: echo "${{ steps.generate-deploy-button.outputs }}"
+      run: echo "${{ steps.generate-deploy-button.outputs.fileUpdated }}"
 
     - name: push-update
       if: steps.generate-deploy-button.outputs.fileUpdated == true

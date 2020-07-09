@@ -13,7 +13,7 @@ def findValidFoldersForMatrix(dirPath):
     return result
 
 def run():
-    results = findValidFoldersForMatrix("D:\\Tests\\action-deploy-azure-button-tests\\test")
+    results = findValidFoldersForMatrix(".//test")
 
     matrixOutput = "::set-output name=matrix::{\"include\":["
 

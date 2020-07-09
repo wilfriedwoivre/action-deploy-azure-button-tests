@@ -11,11 +11,13 @@ jobs:
     - name: generate-deploy-button
       id: generate-deploy-button
       uses: wilfriedwoivre/action-deploy-azure-button@master
+      
 
     - name: debug
       run: echo ${{ steps.generate-deploy-button.outputs.fileUpdated }}
 
     - name: push-update
+      needs: generate-deploy-button
       if: steps.generate-deploy-button.outputs.fileUpdated
       run: |
           git config --global user.name 'Gitub Action Bot'

@@ -3,14 +3,32 @@ name: Deploy Azure Button
 #on: push
 
 jobs:
+  generate-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix-builder.outputs.matrix }}
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: matrix-builder
+      id: matrix-builder
+      uses: ./.github/actions/buildmatrix
+
+
   add-azure-deploy-button:
     runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
+
     steps:
     - uses: actions/checkout@v2
 
     - name: generate-deploy-button
       id: generate-deploy-button
       uses: wilfriedwoivre/action-deploy-azure-button@master
+      env:
+        templatePath: ${{ matrix.template }}
+        markdownPath: ${{ matrix.markdown }}
       
 
     - name: debug

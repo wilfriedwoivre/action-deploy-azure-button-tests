@@ -13,7 +13,7 @@ def findValidFoldersForMatrix(dirPath):
     return result
 
 def run():
-    results = findValidFoldersForMatrix(".//test")
+    results = findValidFoldersForMatrix(os.path.abspath(".//test"))
 
     matrixOutput = "::set-output name=matrix::{\"include\":["
 

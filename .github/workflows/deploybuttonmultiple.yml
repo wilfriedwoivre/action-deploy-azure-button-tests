@@ -1,6 +1,6 @@
 name: Deploy Azure Button
 
-#on: push
+on: push
 
 jobs:
   generate-matrix:

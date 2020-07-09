@@ -1,7 +1,10 @@
 name: Deploy Azure Button
 
-#on: push
-
+on:
+  push:
+    branches-ignore:
+      - '**'
+      
 jobs:
   add-azure-deploy-button:
     runs-on: ubuntu-latest

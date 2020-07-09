@@ -3,25 +3,54 @@ name: Deploy Azure Button
 on: push
 
 jobs:
+  # generate-matrix:
+  #   runs-on: ubuntu-latest
+  #   outputs:
+  #     matrix: ${{ steps.matrix-builder.outputs.matrix }}
+  #   steps:
+  #   - uses: actions/checkout@v2
+
+  #   - name: matrix-builder
+  #     id: matrix-builder
+  #     uses: ./.github/actions/buildmatrix
+
+  #   - name: debug
+  #     run: echo ${{ steps.matrix-builder.outputs.matrix }}
+
   generate-matrix:
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.matrix-builder.outputs.matrix }}
+    outputs: ${{ steps.matrix-builder.outputs.matrix }}
     steps:
-    - uses: actions/checkout@v2
+      - name: matrix-builder
+        id: matrix-builder
+        run: |
+          set -x
+          printf '%s' '#!/usr/bin/env python3
+          # -*- coding: utf-8 -*-
+          
+          import json
 
-    - name: matrix-builder
-      id: matrix-builder
-      uses: ./.github/actions/buildmatrix
+          matrix = json.loads(r"""
+          {
+            "include": [
+              {
+                "template": "/github/workspace/test/A/1/azuredeploy.json",
+                "markdown": "/github/workspace/test/A/1/README.md"
+              }
+            ]
+          }
+          """)
 
-    - name: debug
-      run: echo ${{ steps.matrix-builder.outputs.matrix }}
+          print(json.dumps(matrix))
+          ' > buildmatrix.py;
+
+          printf '::set-output name=matrix::%s\n' "$(python3 buildmatrix.py)"
 
 
   add-azure-deploy-button:
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
+      matrix: ${{ fromJson( needs.generate-matrix.outputs.matrix )  }}
 
     steps:
     - uses: actions/checkout@v2

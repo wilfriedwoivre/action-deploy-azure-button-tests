@@ -15,7 +15,11 @@ jobs:
 
     - name: debug
       run: echo ${{ steps.generate-deploy-button.outputs.fileUpdated }}
-
+  
+  push-updates:
+    name: Update repository if necessary
+    runs-on: ubuntu-latest
+    steps:
     - name: push-update
       needs: generate-deploy-button
       if: steps.generate-deploy-button.outputs.fileUpdated

@@ -1,0 +1,1 @@
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fwilfriedwoivre%2Faction-deploy-azure-button-tests%2Fmaster%2F%2Fgithub%2Fworkspace%2Ftest%2FA%2F7%2Fazuredeploy.json)

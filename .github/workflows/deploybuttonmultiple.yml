@@ -38,19 +38,14 @@ jobs:
     - name: debug
       run: echo ${{ steps.generate-deploy-button.outputs.fileUpdated }}
 
-  
-  push-update:
-    needs:
-      - add-azure-deploy-button
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: push-update
-        run: |
-          git config --global user.name 'Gitub Action Bot'
-          git config --global user.email 'wilfried.woivre@users.noreply.github.com'
-          git diff --quiet && git diff --staged --quiet || git commit -am "Add Azure deploy button"
-          git push
+    - name: push-update
+      run: |
+        git config --global user.name 'Gitub Action Bot'
+        git config --global user.email 'wilfried.woivre@users.noreply.github.com'
+        git diff --quiet && git diff --staged --quiet || git commit -am "Add Azure deploy button"
+        git pull --rebase
+        git push
+      
 
   debug-job:
     name: Debug run job

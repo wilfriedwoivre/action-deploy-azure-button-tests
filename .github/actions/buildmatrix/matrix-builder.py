@@ -18,7 +18,7 @@ def run():
     matrixOutput = "::set-output name=matrix::{\"include\":["
 
     for item in results:
-        matrixOutput += "{\"template\":\""+os.path.join(item, "azuredeploy.json")+"\", \"markdown\":\""+os.path.join(item, "README.md")+"\"},"
+        matrixOutput += "{\"template\":\""+os.path.join(item, "azuredeploy.json").replace("\\", "\\\\")+"\", \"markdown\":\""+os.path.join(item, "README.md").replace("\\", "\\\\")+"\"},"
 
     matrixOutput = matrixOutput[:-1]
     matrixOutput += "]}"

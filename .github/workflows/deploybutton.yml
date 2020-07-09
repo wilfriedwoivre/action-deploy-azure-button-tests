@@ -20,11 +20,11 @@ jobs:
   
   push-updates:
     runs-on: ubuntu-latest
-    needs: generate-deploy-button
+    needs: add-azure-deploy-button
  
     steps:
     - name: push-update
-      if: needs.generate-deploy-button.outputs.fileUpdated
+      if: needs.add-azure-deploy-button.outputs.fileUpdated
       run: |
           git config --global user.name 'Gitub Action Bot'
           git config --global user.email 'wilfried.woivre@users.noreply.github.com'

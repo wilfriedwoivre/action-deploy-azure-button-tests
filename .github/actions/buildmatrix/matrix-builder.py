@@ -15,7 +15,7 @@ def findValidFoldersForMatrix(dirPath):
 def run():
     results = findValidFoldersForMatrix(os.path.abspath(".//test"))
 
-    matrixOutput = "::set-output name=matrix::{\"include\":["
+    matrixOutput = "::set-output name=matrix::{\\\"include\\\":["
 
     for item in results:
         matrixOutput += "{\\\"template\\\":\\\""+os.path.join(item, "azuredeploy.json").replace("\\", "\\\\")+"\\\", \\\"markdown\\\":\\\""+os.path.join(item, "README.md").replace("\\", "\\\\")+"\\\"},"

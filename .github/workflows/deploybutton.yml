@@ -1,6 +1,6 @@
 name: Deploy Azure Button
 
-on: [push, pull_request]
+on: push
 
 jobs:
   add-azure-deploy-button:

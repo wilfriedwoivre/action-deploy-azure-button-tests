@@ -5,6 +5,8 @@ on: push
 jobs:
   add-azure-deploy-button:
     runs-on: ubuntu-latest
+    outputs: 
+      fileUpdated: ${{ steps.generate-deploy-button.outputs.fileUpdated }}
     steps:
     - uses: actions/checkout@v2
 
@@ -17,12 +19,12 @@ jobs:
       run: echo ${{ steps.generate-deploy-button.outputs.fileUpdated }}
   
   push-updates:
-    name: Update repository if necessary
     runs-on: ubuntu-latest
+    needs: generate-deploy-button
+ 
     steps:
     - name: push-update
-      needs: generate-deploy-button
-      if: steps.generate-deploy-button.outputs.fileUpdated
+      if: needs.generate-deploy-button.outputs.fileUpdated
       run: |
           git config --global user.name 'Gitub Action Bot'
           git config --global user.email 'wilfried.woivre@users.noreply.github.com'

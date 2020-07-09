@@ -18,8 +18,10 @@ jobs:
   #     run: echo ${{ steps.matrix-builder.outputs.matrix }}
 
   generate-matrix:
+    name: Generate Matrix
     runs-on: ubuntu-latest
-    outputs: ${{ steps.matrix-builder.outputs.matrix }}
+    outputs: 
+      matrix: ${{ steps.matrix-builder.outputs.matrix }}
     steps:
       - name: matrix-builder
         id: matrix-builder
